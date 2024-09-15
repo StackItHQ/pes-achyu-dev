@@ -79,28 +79,27 @@ Technology stack -
 
 The project structure is as below - 
 
-├───a/
-│   ├───aa/
-│   ├───ab/
-│   └───ac/
-├───a1/
-├───b/
-│   ├───ba/
-│   │   ├───bafile1.txt
-│   │   └───bafile2.txt
-│   ├───bb/
-│   ├───bc/
-│   │   └───bca/
-│   │       └───bca-file1.txt
-│   ├───bd/
-│   └───bfile1.txt
-├───c/
-├───c1/
-└───d/
-    ├───d1/
-    └───d2/
+superjoin-realtime/
+├── app/
+│   ├── api/
+│   │   ├── autosyncstatus/
+│   │   ├── startAutoSync/
+│   │   └── stopAutoSync/
+|   |   |---lastsynctime/ 
+│   ├── actions/
+│   │   └── syncsheet.ts
+│   └── page.tsx
+├── components/
+│   └── ui/
+├── lib/
+│   └── scheduledSync.ts
+├── prisma/
+|   |---migrations/
+│   └── schema.prisma
+└── next.config.js
 
-My Approach is as below - 
+
+The **Approach** is as below - 
 
 1. Google Sheets API - We use Google Sheets API to fetch the data from a specific Google sheet. The authentication of this is setup as service account
 

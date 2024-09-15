@@ -45,11 +45,12 @@ Once you're done, make sure you **record a video** showing your project working.
 
 We have a checklist at the bottom of this README file, which you should update as your progress with your assignment. It will help us evaluate your project.
 
-- [ ] My code's working just fine! 🥳
-- [ ] I have recorded a video showing it working and embedded it in the README ▶️
-- [ ] I have tested all the normal working cases 😎
-- [ ] I have even solved some edge cases (brownie points) 💪
-- [ ] I added my very planned-out approach to the problem at the end of this README 📜
+- [✓ ] My code's working just fine! 🥳
+- [✓] I have recorded a video showing it working and embedded it in the README ▶️
+- [✓] I have tested all the normal working cases 😎
+- [✓] I have even solved some edge cases (brownie points) 💪
+- [✓] I added my very planned-out approach to the problem at the end of this README 📜
+
 
 ## Got Questions❓
 Feel free to check the discussions tab, you might get some help there. Check out that tab before reaching out to us. Also, did you know, the internet is a great place to explore? 😛
@@ -267,4 +268,8 @@ Click on the "Start Auto Sync (Every 2 seconds)" button to trigger auto sync eve
 You can now see the status as "On" 
 
 Similary you can now, stop the Sync to stop the synchronization.
+
+
+5. Refer the Vidoe Link below, for the Video demonstration -
+
 

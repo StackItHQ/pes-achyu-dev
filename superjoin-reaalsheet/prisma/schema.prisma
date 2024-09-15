@@ -9,9 +9,10 @@ datasource db {
 
 model Sheet {
   id        String   @id @default(cuid())
-  rowId     String
-  column1   String
-  column2   String
-  column3   String
+  rowId     String?
+  column1   String?
+  column2   String?
+  column3   String?
   updatedAt DateTime @updatedAt
+  lastSyncedAt DateTime? // Nullable timestamp for last sync
 }

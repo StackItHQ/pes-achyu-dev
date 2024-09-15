@@ -26,7 +26,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env*.local
 .env
 .env.local
 
@@ -39,4 +38,4 @@ next-env.d.ts
 
 
 # Specific JSON file
-superjoin-realtime-acbb7906b686.json
+superjoin-realtime-8a1187848ac4.json

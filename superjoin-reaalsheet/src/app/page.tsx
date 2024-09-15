@@ -1,16 +1,25 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Loader2, CheckCircle, XCircle } from "lucide-react"
-import { syncSheetData } from '../app/actions/syncsheet'
+import { syncSheetData, startAutoSync, stopAutoSync } from './actions/syncsheet';
 
 export default function SyncDashboard() {
   const [syncStatus, setSyncStatus] = useState<'idle' | 'syncing' | 'success' | 'error'>('idle')
   const [lastSyncTime, setLastSyncTime] = useState<string | null>(null)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [isAutoSyncOn, setIsAutoSyncOn] = useState(false)
+
+  useEffect(() => {
+    // Check if auto-sync is already running when component mounts
+    fetch('/api/autosyncstatus')
+      .then(res => res.json())
+      .then(data => setIsAutoSyncOn(data.isRunning))
+      .catch(error => console.error('Error checking auto-sync status:', error))
+  }, [])
 
   const triggerSync = async () => {
     setSyncStatus('syncing')
@@ -27,6 +36,20 @@ export default function SyncDashboard() {
       console.error('Sync error:', error)
       setSyncStatus('error')
       setErrorMessage(error instanceof Error ? error.message : 'An unknown error occurred')
+    }
+  }
+
+  const toggleAutoSync = async () => {
+    try {
+      if (isAutoSyncOn) {
+        await stopAutoSync()
+      } else {
+        await startAutoSync()
+      }
+      setIsAutoSyncOn(!isAutoSyncOn)
+    } catch (error) {
+      console.error('Error toggling auto-sync:', error)
+      setErrorMessage('Failed to toggle auto-sync')
     }
   }
 
@@ -52,8 +75,14 @@ export default function SyncDashboard() {
                   Syncing...
                 </>
               ) : (
-                'Trigger Sync'
+                'Trigger Manual Sync'
               )}
+            </Button>
+            <Button
+              onClick={toggleAutoSync}
+              className="w-full"
+            >
+              {isAutoSyncOn ? 'Stop Auto Sync' : 'Start Auto Sync (Every 2 Minutes)'}
             </Button>
             {syncStatus === 'success' && (
               <Alert className="border-green-500 bg-green-50 text-green-700">
@@ -69,13 +98,16 @@ export default function SyncDashboard() {
                 <XCircle className="h-4 w-4" />
                 <AlertTitle>Sync Failed</AlertTitle>
                 <AlertDescription>
-                {errorMessage || 'There was an error synchronizing your data. Please try again.'}
+                  {errorMessage || 'There was an error synchronizing your data. Please try again.'}
                 </AlertDescription>
               </Alert>
             )}
           </div>
         </CardContent>
-        <CardFooter className="flex justify-end">
+        <CardFooter className="flex justify-between">
+          <p className="text-sm text-muted-foreground">
+            Auto Sync: {isAutoSyncOn ? 'On' : 'Off'}
+          </p>
           {lastSyncTime && (
             <p className="text-sm text-muted-foreground">
               Last synced: {lastSyncTime}

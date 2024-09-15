@@ -79,6 +79,7 @@ Technology stack -
 
 The project structure is as below - 
 
+```
 superjoin-realtime/
 ├── app/
 │   ├── api/
@@ -97,7 +98,7 @@ superjoin-realtime/
 |   |---migrations/
 │   └── schema.prisma
 └── next.config.js
-
+```
 
 The **Approach** is as below - 
 

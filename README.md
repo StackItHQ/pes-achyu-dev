@@ -79,7 +79,24 @@ Technology stack -
 
 The project structure is as below - 
 
-realtime-db-sync/ ├── app/ │ ├── api/ │ │ ├── autosyncstatus/ │ │ ├── startAutoSync/ │ │ └── stopAutoSync/ │ │ └── lastsynctime/ │ ├── actions/ │ │ └── syncsheet.ts │ └── page.tsx ├── components/ │ └── ui/ ├── lib/ │ └── scheduledSync.ts ├── prisma/ │ ├── migrations/ │ └── schema.prisma └── next.config.js
+real-time-db-sync/
+├── app/
+│   ├── api/
+│   │   ├── autosyncstatus/
+│   │   ├── startAutoSync/
+│   │   ├── stopAutoSync/
+│   │   └── lastsynctime/
+│   ├── actions/
+│   │   └── syncsheet.ts
+│   └── page.tsx
+├── components/
+│   └── ui/
+├── lib/
+│   └── scheduledSync.ts
+├── prisma/
+│   ├── migrations/
+│   └── schema.prisma
+└── next.config.js
 
 My Approach is as below - 
 

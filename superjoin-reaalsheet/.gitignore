@@ -27,6 +27,8 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
+.env.local
 
 # vercel
 .vercel
@@ -34,3 +36,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+# Specific JSON file
+superjoin-realtime-acbb7906b686.json

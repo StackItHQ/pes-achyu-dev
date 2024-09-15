@@ -7,7 +7,7 @@ let isCronRunning = false;
 if (!isCronRunning) {
   isCronRunning = true;
 
-  cron.schedule('*/2 * * * *', async () => {
+  cron.schedule('2 * * * * *', async () => {
     console.log('Cron job started for Google Sheets sync.');
     try {
       const result = await syncSheetData();

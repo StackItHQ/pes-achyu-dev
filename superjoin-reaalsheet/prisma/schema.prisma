@@ -14,5 +14,5 @@ model Sheet {
   column2   String?
   column3   String?
   updatedAt DateTime @updatedAt
-  lastSyncedAt DateTime? // Nullable timestamp for last sync
+  lastSyncedAt DateTime? 
 }

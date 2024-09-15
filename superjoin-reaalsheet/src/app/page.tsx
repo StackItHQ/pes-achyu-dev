@@ -13,13 +13,45 @@ export default function SyncDashboard() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [isAutoSyncOn, setIsAutoSyncOn] = useState(false)
 
+  // useEffect(() => {
+  //   // Check if auto-sync is already running when component mounts
+  //   fetch('/api/autosyncstatus')
+  //     .then(res => res.json())
+  //     .then(data => setIsAutoSyncOn(data.isRunning))
+  //     .catch(error => console.error('Error checking auto-sync status:', error))
+  // }, [])
+
   useEffect(() => {
-    // Check if auto-sync is already running when component mounts
-    fetch('/api/autosyncstatus')
-      .then(res => res.json())
-      .then(data => setIsAutoSyncOn(data.isRunning))
-      .catch(error => console.error('Error checking auto-sync status:', error))
-  }, [])
+    if (!process.env.NEXT_PUBLIC_BASE_URL) {
+      console.error('NEXT_PUBLIC_BASE_URL is not defined');
+      setErrorMessage('Server configuration error. Please contact support.');
+    }
+
+    // Function to fetch the last sync time
+    const fetchLastSyncTime = async () => {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/lastsynctime`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch last sync time');
+        }
+        const data = await response.json();
+        setLastSyncTime(data.lastSyncTime);
+      } catch (error) {
+        console.error('Error fetching last sync time:', error);
+      }
+    };
+
+    // Fetch last sync time immediately
+    fetchLastSyncTime();
+
+    // Set up interval to fetch last sync time every 2 seconds
+    const intervalId = setInterval(fetchLastSyncTime, 2000);
+
+    // Clean up interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []);
+
+
 
   const triggerSync = async () => {
     setSyncStatus('syncing')
@@ -40,6 +72,12 @@ export default function SyncDashboard() {
   }
 
   const toggleAutoSync = async () => {
+
+    if (!process.env.NEXT_PUBLIC_BASE_URL) {
+      setErrorMessage('Server configuration error. Please contact support.');
+      return;
+    }
+
     try {
       if (isAutoSyncOn) {
         await stopAutoSync()
@@ -82,7 +120,7 @@ export default function SyncDashboard() {
               onClick={toggleAutoSync}
               className="w-full"
             >
-              {isAutoSyncOn ? 'Stop Auto Sync' : 'Start Auto Sync (Every 2 Minutes)'}
+              {isAutoSyncOn ? 'Stop Auto Sync' : 'Start Auto Sync (Every 2 seconds)'}
             </Button>
             {syncStatus === 'success' && (
               <Alert className="border-green-500 bg-green-50 text-green-700">

@@ -124,6 +124,10 @@ The **Approach** is as below -
 git clone https://github.com/StackItHQ/pes-achyu-dev.git
 ```
 
+```
+cd superjoin-realtime
+```
+
 2. Install all the required dependencies - 
 
 ```

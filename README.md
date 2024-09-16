@@ -45,7 +45,7 @@ Once you're done, make sure you **record a video** showing your project working.
 
 We have a checklist at the bottom of this README file, which you should update as your progress with your assignment. It will help us evaluate your project.
 
-- [✓ ] My code's working just fine! 🥳
+- [✓ ] My code's working more than just fine! 🥳
 - [✓] I have recorded a video showing it working and embedded it in the README ▶️
 - [✓] I have tested all the normal working cases 😎
 - [✓] I have even solved some edge cases (brownie points) 💪
@@ -114,6 +114,8 @@ The **Approach** is as below -
 5. Error handling - Comprehensive error handling is implemented throughout the application, from API calls to database operations. Errors are caught, logged, and displayed to users when appropriate.
 
 6. Automatic synchronizaton - used ``node-cron`` to scheduled a sync process every 2 seconds. This can be either stopped or started using the UI
+
+7. Conflict handling - Updates the db and sheet if both are updated simulatenously as well. 
 
 
 ## Steps to run the project
@@ -276,4 +278,5 @@ Similary you can now, stop the Sync to stop the synchronization.
 
 5. Refer the Vidoe Link below, for the Video demonstration -
 
+[Video link for submission]()
 

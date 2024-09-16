@@ -9,7 +9,7 @@ export function startSyncJob() {
     return;
   }
 
-  syncJob = cron.schedule('*/2 * * * *', async () => {
+  syncJob = cron.schedule('*/2 * * * * *', async () => {
     console.log('Running sync job');
     try {
       const result = await syncSheetData();

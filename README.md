@@ -278,5 +278,4 @@ Similary you can now, stop the Sync to stop the synchronization.
 
 5. Refer the Vidoe Link below, for the Video demonstration -
 
-[Video link for submission](Video_demo.mp4)
-
+[Video link for submission](https://drive.google.com/file/d/1frXhxq3rVk4dAc8JxjtXHdjqDpJfykKH/view?usp=drive_link)
